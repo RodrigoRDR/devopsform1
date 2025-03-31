@@ -8,7 +8,9 @@ export default defineConfig([
   },
   {
     files: ["**/*.{js,mjs,cjs}"],
-    languageOptions: { globals: globals.browser },
+    languageOptions: {
+      globals: globals.browser, // Adiciona as variáveis globais do navegador
+    },
   },
   {
     files: ["**/*.{js,mjs,cjs}"],
@@ -16,10 +18,10 @@ export default defineConfig([
     extends: ["js/recommended"],
   },
   {
-    files: ["webpack.config.js"], // Adicione este bloco para configurar o ambiente específico para o Webpack
+    files: ["webpack.config.js"], // Para o arquivo webpack.config.js, adicione a configuração do ambiente Node.js
     languageOptions: {
-      env: {
-        node: true, // Adiciona suporte ao Node.js (para `require`, `module`, `__dirname`)
+      globals: {
+        ...globals.node, // Permite o uso de variáveis do Node.js (ex: require, module, __dirname)
       },
     },
   },
