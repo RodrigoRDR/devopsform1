@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: ["main", "cibranch"]
   schedule:
-    - cron: "40 18 * * 1" # Todos os lunes às 18:40
+    - cron: "40 18 * * 1"
 
 jobs:
   eslint:
@@ -17,11 +17,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install dependencies
+      - name: Instalar dependências
         run: npm install
 
-      - name: Run ESLint
-        run: |
-          npx eslint . \
-          --config .eslintrc.js \
-          --ext .js,.jsx,.ts,.tsx
+      - name: Ajustar permissões do ESLint
+        run: chmod +x ./node_modules/.bin/eslint
+
+      - name: Rodar ESLint
+        run: ./node_modules/.bin/eslint . --config .eslintrc.js --ext .js,.jsx,.ts,.tsx
