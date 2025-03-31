@@ -1,10 +1,14 @@
-]name: ESLint
+name: ESLint
 
 on:
   push:
-    branches: ["main", "cibranch"]
+    branches:
+      - main
+      - cibranch
   pull_request:
-    branches: ["main", "cibranch"]
+    branches:
+      - main
+      - cibranch
   schedule:
     - cron: "40 18 * * 1"
 
