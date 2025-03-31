@@ -1,4 +1,4 @@
-name: ESLint
+]name: ESLint
 
 on:
   push:
@@ -23,5 +23,5 @@ jobs:
       - name: Ajustar permissões do ESLint
         run: chmod +x ./node_modules/.bin/eslint
 
-      - name: Rodar ESLint
-        run: ./node_modules/.bin/eslint . --config .eslintrc.js --ext .js,.jsx,.ts,.tsx
+      - name: Rodar ESLint com arquivo eslint.config.mjs
+        run: ./node_modules/.bin/eslint . --config eslint.config.mjs --ext .js,.mjs,.cjs
