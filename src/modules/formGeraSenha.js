@@ -6,7 +6,7 @@ const chkMaiusculas = document.querySelector(".chk-maiusculas");
 const chkMinusculas = document.querySelector(".chk-minusculas");
 const chkNumeros = document.querySelector(".chk-numeros");
 const chkSimbolos = document.querySelector(".chk-simbolos");
-const gerarSenha = document.querySelector(".gerar-senha");
+// const gerarSenha = document.querySelector(".gerar-senha");
 
 export default () => {
   addEventListener("click", () => {
