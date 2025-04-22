@@ -1,0 +1,33 @@
+name: Discord Notification
+
+on:
+  push:
+    branches:
+      - main
+      - cibranch
+  pull_request:
+    branches:
+      - main
+      - cibranch
+
+jobs:
+  discord_notify:
+    name: Notificar Discord
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Enviar mensagem para o Discord
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          MESSAGE="Novo evento no repositório"
+          MESSAGE="$MESSAGE\n\nRepositório: ${{ github.repository }}"
+          MESSAGE="$MESSAGE\nEvento: ${{ github.event_name }}"
+          MESSAGE="$MESSAGE\nBranch: ${{ github.ref_name }}"
+          MESSAGE="$MESSAGE\nAutor: ${{ github.actor }}"
+          MESSAGE="$MESSAGE\nCommit: https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
+
+          curl -H "Content-Type: application/json" \
+               -X POST \
+               -d "{\"content\": \"$MESSAGE\"}" \
+               "$DISCORD_WEBHOOK"
