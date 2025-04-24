@@ -38,13 +38,15 @@ export default defineConfig([
     },
   },
   {
-    // Configuração para Jest
     files: ["**/__tests__/**/*.js", "**/*.test.js"],
     env: {
       jest: true, // Ativa o ambiente Jest
     },
-    plugins: ["jest"], // Adiciona o plugin do Jest
-    extends: ["plugin:jest/recommended"], // Usa as regras recomendadas do Jest
+    plugins: ["jest"], // Adiciona o plugin Jest
+    extends: [
+      "plugin:jest/recommended", // Usa as regras recomendadas do Jest
+      "plugin:jest/style", // Usa as regras de estilo do Jest (opcional)
+    ],
     rules: {
       "no-unused-vars": "off", // Mantenha suas regras customizadas, se necessário
     },
