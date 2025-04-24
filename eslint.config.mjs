@@ -37,4 +37,15 @@ export default defineConfig([
       "no-unused-vars": "off",
     },
   },
+  {
+    files: ["**/__tests__/**/*.js", "**/*.test.js"],
+    env: {
+      jest: true,
+    },
+    plugins: ["jest"],
+    extends: ["plugin:jest/recommended"],
+    rules: {
+      "no-unused-vars": "off",
+    },
+  },
 ]);
