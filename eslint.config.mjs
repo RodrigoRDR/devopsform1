@@ -28,7 +28,7 @@ export default defineConfig([
     },
   },
   {
-    files: ["webpack.config.js"],
+    files: ["webpack.config.js", "babel.config.js"],
     languageOptions: {
       globals: {
         ...globals.node,
