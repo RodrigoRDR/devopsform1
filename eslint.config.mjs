@@ -1,6 +1,7 @@
 import { defineConfig } from "eslint/config";
 import globals from "globals";
 import js from "@eslint/js";
+import jest from "eslint-plugin-jest";
 
 export default defineConfig([
   {
@@ -27,7 +28,7 @@ export default defineConfig([
     },
   },
   {
-    files: ["webpack.config.js"],
+    files: ["webpack.config.js", "babel.config.js"],
     languageOptions: {
       globals: {
         ...globals.node,
@@ -35,6 +36,22 @@ export default defineConfig([
     },
     rules: {
       "no-unused-vars": "off",
+    },
+  },
+  {
+    files: ["**/__tests__/**/*.js", "**/*.test.js"],
+    languageOptions: {
+      globals: {
+        ...globals.jest,
+      },
+    },
+    plugins: {
+      jest,
+    },
+    rules: {
+      "no-unused-vars": "off",
+      ...jest.configs.recommended.rules,
+      ...jest.configs.style.rules,
     },
   },
 ]);
