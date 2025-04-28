@@ -1,0 +1,26 @@
+name: Run Unit Tests
+
+on:
+  push:
+    branches:
+      - main
+      - cibranch
+  pull_request:
+    branches:
+      - main
+      - cibranch
+
+jobs:
+  tests:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Rodar testes
+        run: npm run test
