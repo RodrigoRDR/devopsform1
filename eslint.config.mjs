@@ -1,6 +1,7 @@
 import { defineConfig } from "eslint/config";
 import globals from "globals";
 import js from "@eslint/js";
+import jest from "eslint-plugin-jest";
 
 export default defineConfig([
   {
@@ -39,16 +40,18 @@ export default defineConfig([
   },
   {
     files: ["**/__tests__/**/*.js", "**/*.test.js"],
-    env: {
-      jest: true, // Ativa o ambiente Jest
+    languageOptions: {
+      globals: {
+        ...globals.jest,
+      },
     },
-    plugins: ["jest"], // Adiciona o plugin Jest
-    extends: [
-      "plugin:jest/recommended", // Usa as regras recomendadas do Jest
-      "plugin:jest/style", // Usa as regras de estilo do Jest (opcional)
-    ],
+    plugins: {
+      jest,
+    },
     rules: {
-      "no-unused-vars": "off", // Mantenha suas regras customizadas, se necessário
+      "no-unused-vars": "off",
+      ...jest.configs.recommended.rules,
+      ...jest.configs.style.rules,
     },
   },
 ]);
